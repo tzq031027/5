@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Face</title>
+    <style>
+        /* 设置画布的背景颜色为浅绿色 */
+        canvas {
+            background-color: #90EE90; /* 浅绿色 */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="smileyCanvas" width="300" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById('smileyCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 绘制脸部 (黄色圆形)
+        ctx.beginPath();
+        ctx.arc(150, 150, 100, 0, Math.PI * 2, true); // 中心为(150, 150)，半径为100
+        ctx.fillStyle = 'yellow';
+        ctx.fill();
+        ctx.stroke();
+
+        // 绘制眼睛
+        ctx.beginPath();
+        ctx.arc(110, 120, 10, 0, Math.PI * 2, true); // 左眼
+        ctx.arc(190, 120, 10, 0, Math.PI * 2, true); // 右眼
+        ctx.fillStyle = 'black';
+        ctx.fill();
+
+        // 绘制鼻子 (垂直线)
+        ctx.beginPath();
+        ctx.moveTo(150, 140); // 起始点
+        ctx.lineTo(150, 170); // 终点
+        ctx.stroke();
+
+        // 绘制嘴巴
+        ctx.beginPath();
+        ctx.arc(150, 190, 50, 0, Math.PI, false); // 从150, 190绘制半圆，半径为50
+        ctx.stroke();
+
+        // 添加文本
+        ctx.font = "20px Arial";
+        ctx.fillStyle = 'green'; // 设置文本颜色为绿色
+        ctx.textAlign = "center"; // 居中对齐
+        ctx.fillText("The Canvas brought me to life!", 150, 280); // 文本位置调整
+    </script>
+</body>
+</html>

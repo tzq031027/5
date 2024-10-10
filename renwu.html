@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待办事项列表</title>
+</head>
+<body>
+    <input type="text" id="taskInput" placeholder="输入任务">
+    <button onclick="addTask()">添加任务</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        // 页面加载时从 Local Storage 加载任务
+        document.addEventListener('DOMContentLoaded', loadTasks);
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(task => addTaskToList(task));
+        }
+
+        function addTask() {
+            const task = document.getElementById('taskInput').value;
+            if (task) {
+                addTaskToList(task);
+                storeTask(task);
+                document.getElementById('taskInput').value = '';
+            }
+        }
+
+        function addTaskToList(task) {
+            const li = document.createElement('li');
+            li.textContent = task;
+            document.getElementById('taskList').appendChild(li);
+        }
+
+        function storeTask(task) {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+    </script>
+</body>
+</html>
